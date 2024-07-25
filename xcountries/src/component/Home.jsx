@@ -6,9 +6,14 @@ function Home() {
     const [data, setData] = useState([]);
 
     const fetch_data = async ()=>{
+        try{
       const response = await fetch('https://xcountries-backend.azurewebsites.net/all');
       const data = await response.json();
       setData(data);
+        }
+        catch(err){
+            console.error('Error fetching data: '+err);
+        }
     }
     useEffect(()=>{
       fetch_data();
